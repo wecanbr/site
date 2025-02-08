@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yes, We Can Be(ar) Rich - $WECANBR - Memecoin on Base</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: url('images/background-little-rockets.png') repeat;
+        }
+
+        .top-bar {
+            width: 100%;
+            height: 320px;
+            background: url('images/banner-top.png') no-repeat center center;
+            background-size: cover;
+        }
+
+        .copy-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #0b2628
+        }
+
+        .container {
+            width: 85vw;
+            min-height: 80vh;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        #tokenomic {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        h1,
+        h2 {
+            color: #455229;
+        }
+
+        p {
+            color: #666;
+            font-size: 18px;
+        }
+
+        .contract {
+            background: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            word-break: break-word;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888;
+        }
+
+        .socials {
+            margin-top: 20px;
+        }
+
+        .socials a {
+            text-decoration: none;
+            color: #0b2628;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-bar"></div>
+    <div class="container">
+        <h1>Meet The Bear Rich (BR)</h1>
+        <p>Just another memecoin on the Base network.</p>
+        <p>We are a token inspired by hope campaigns! Disclaimer: We have no affiliation with any political party,
+            group, or individual.</p>
+        <p>The Bear Rich token embodies the aspiration to achieve wealth on the Base network, drawing inspiration from
+            the bear's intelligence, strength, and resilience.</p>
+        <p>The mission of Bear Rich is to empower individuals to achieve financial prosperity through our token. By
+            leveraging the symbolic traits of the bear—intelligence, strength, and resilience—we aim to provide a
+            platform where many can attain wealth within the Base network. </p>
+        <p>Can we get rich on Base?</p>
+        <h2>Yes, We Can Be(ar) Rich!</h2>
+        <p class="contract">
+            Token Contract:
+            <span id="contractAddress" style="color: #4d7735">
+                0x637A4B817Fe57e97f2D8DbC85b542d9EB436676f
+            </span>
+            <button class="copy-button" onclick="copyToClipboard()">
+                <i class="material-icons">content_copy</i>
+            </button>
+        </p>
+        <h2>Tokenomic</h2>
+        <div id="tokenomic">
+            <canvas id="tokenomic-chart" width="400" height="400"></canvas>
+        </div>
+        <div class="socials" style="margin-top: 10px;">
+            <a href="https://x.com/yeswecanbr" target="_blank" title="Follow us on X">
+                <img src="images/icons8-x.svg" alt="X (Twitter)" style="vertical-align: middle;">
+                Follow us on X
+            </a>
+        </div>
+
+        <div class="footer">
+            © 2025 Bear Rich. All rights reserved.
+            <br />
+            Contact: <span style="color: #0b2628">bear.rich@yeswecanberich.meme</span>
+        </div>
+    </div>
+
+    <script>
+        const data = {
+            labels: [
+                'Founders and Developers',
+                'Airdrops and Community',
+                'Liquidity (DEX + CEX)',
+                'Treasury and Development',
+                'Future Burn'
+            ],
+            datasets: [{
+                data: [10, 20, 50, 10, 10], // Corresponding percentages
+                backgroundColor: [
+                    '#8ac06a',
+                    '#4d7735',
+                    '#0b2628',
+                    '#94b057',
+                    '#fff9ce'
+                ]
+            }]
+        };
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const ctx = document.getElementById('tokenomic-chart').getContext('2d');
+            const myPieChart = new Chart(ctx, {
+                type: 'pie',
+                data: data,
+                options: {
+                    responsive: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Token Distribution'
+                        }
+                    }
+                }
+            });
+        });
+
+        function copyToClipboard() {
+            const contractAddress = document.getElementById('contractAddress').innerText;
+            navigator.clipboard.writeText(contractAddress).then(() => {
+                alert('Contract number copied to clipboard!');
+            }).catch(err => {
+                console.error('Error trying to copy contract number: ', err);
+            });
+        }
+
+    </script>
+
+</body>
+
+</html>
