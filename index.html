@@ -2,15 +2,14 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Yes, We Can Be(ar) Rich - $WECANBR - Memecoin on Base</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
             margin: 0;
             padding: 0;
             background: url('images/background-little-rockets.png') repeat;
@@ -23,42 +22,25 @@
             background-size: cover;
         }
 
-        .copy-button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #0b2628
-        }
-
         .container {
             width: 85vw;
-            min-height: 80vh;
+            max-width: 1200px;
             margin: 20px auto;
             background: #fff;
             padding: 20px;
             border-radius: 10px;
         }
 
-        #tokenomic {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-
         h1,
         h2 {
             color: #455229;
+            text-align: center;
         }
 
         p {
             color: #666;
             font-size: 18px;
+            text-align: center;
         }
 
         .contract {
@@ -67,65 +49,186 @@
             border-radius: 5px;
             font-weight: bold;
             word-break: break-word;
+            text-align: center;
+            margin: 20px 0;
         }
 
-        .footer {
+        .copy-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #0b2628;
+        }
+
+        .tokenomic-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .chart-wrapper {
+            flex: 1 1 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .token-description {
+            flex: 1 1 500px;
+            background: #fdfdfd;
+            padding: 0px 20px 20px;
+            border-left: 1px solid #ddd
+        }
+
+        .token-description dt {
+            font-weight: bold;
+            font-size: 1.1em;
             margin-top: 20px;
-            font-size: 14px;
-            color: #888;
+            color: #09380b;
+        }
+
+        .token-description dt:first-child {
+            margin-top: 0;
+        }
+
+        .token-description dd {
+            margin-left: 0;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+            color: #222;
+            text-align: justify;
         }
 
         .socials {
-            margin-top: 20px;
+            margin-top: 30px;
+            text-align: center;
         }
 
         .socials a {
             text-decoration: none;
             color: #0b2628;
         }
+
+        footer.footer {
+            font-size: 14px;
+            color: #888;
+            margin-top: 40px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        footer.footer a {
+            color: #0b2628;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .tokenomic-section {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <div class="top-bar"></div>
-    <div class="container">
-        <h1>Meet The Bear Rich (BR)</h1>
-        <p>Just another memecoin on the Base network.</p>
-        <p>We are a token inspired by hope campaigns! Disclaimer: We have no affiliation with any political party,
-            group, or individual.</p>
-        <p>The Bear Rich token embodies the aspiration to achieve wealth on the Base network, drawing inspiration from
-            the bear's intelligence, strength, and resilience.</p>
-        <p>The mission of Bear Rich is to empower individuals to achieve financial prosperity through our token. By
-            leveraging the symbolic traits of the bear—intelligence, strength, and resilience—we aim to provide a
-            platform where many can attain wealth within the Base network. </p>
-        <p>Can we get rich on Base?</p>
-        <h2>Yes, We Can Be(ar) Rich!</h2>
-        <p class="contract">
-            Token Contract:
-            <span id="contractAddress" style="color: #4d7735">
-                0x637A4B817Fe57e97f2D8DbC85b542d9EB436676f
-            </span>
-            <button class="copy-button" onclick="copyToClipboard()">
-                <i class="material-icons">content_copy</i>
-            </button>
-        </p>
-        <h2>Tokenomic</h2>
-        <div id="tokenomic">
-            <canvas id="tokenomic-chart" width="400" height="400"></canvas>
-        </div>
-        <div class="socials" style="margin-top: 10px;">
+
+    <header class="top-bar"></header>
+
+    <main class="container">
+        <section aria-labelledby="intro">
+            <h1 id="intro">Meet The Bear Rich (BR)</h1>
+            <p>Just another memecoin on the Base network.</p>
+            <p>We are a token inspired by hope campaigns! Disclaimer: We have no affiliation with any political party,
+                group, or individual.</p>
+            <p>The Bear Rich token embodies the aspiration to achieve wealth on the Base network, drawing inspiration
+                from the bear's intelligence, strength, and resilience.</p>
+            <p>The mission of Bear Rich is to empower individuals to achieve financial prosperity through our token. By
+                leveraging the symbolic traits of the bear—intelligence, strength, and resilience—we aim to provide a
+                platform where many can attain wealth within the Base network.</p>
+            <p>Can we get rich on Base?</p>
+            <h2>Yes, We Can Be(ar) Rich!</h2>
+        </section>
+
+        <section aria-labelledby="contract">
+            <h2 id="contract">Token Contract</h2>
+            <p class="contract">
+                <span id="contractAddress" style="color: #4d7735">
+                    0x637A4B817Fe57e97f2D8DbC85b542d9EB436676f
+                </span>
+                <button class="copy-button" onclick="copyToClipboard()">
+                    <i class="material-icons">content_copy</i>
+                </button>
+            </p>
+        </section>
+
+        <section aria-labelledby="tokenomic">
+            <h2 id="tokenomic">Tokenomic</h2>
+            <div class="tokenomic-section">
+                <div class="chart-wrapper">
+                    <canvas id="tokenomic-chart" width="400" height="400"></canvas>
+                </div>
+                <dl class="token-description">
+                    <dt>Founders and Developers (10%)</dt>
+                    <dd>
+                        This allocation is designated for the two founders and any developers who contributed during the
+                        initial phase. Tokens from this wallet will be the only ones accessible to the team for personal
+                        sales.
+                        We commit to allocating 30% of the proceeds from every sale made from this wallet for buybacks.
+                        The process will work as follows: whenever a sale is made from the "Founders and Developers"
+                        wallet, 30% of the amount will be automatically directed to a separate wallet named
+                        <strong>"Founders Buyback"</strong>, which will be used exclusively for repurchasing tokens on
+                        the market.
+                        Buybacks will be executed at an appropriate time, based on discussions with the community —
+                        especially with holders of our token — to ensure alignment with the long-term vision of the
+                        project.
+                    </dd>
+
+                    <dt>Airdrops and Community (20%)</dt>
+                    <dd>This allocation is dedicated to rewarding and engaging the community through airdrops,
+                        giveaways, and incentive programs. The goal is to foster adoption, reward active members, and
+                        strengthen the Bear Rich ecosystem.</dd>
+
+                    <dt>Liquidity (DEX + CEX) (50%)</dt>
+                    <dd>Ensuring sufficient market liquidity is crucial for a healthy token economy. This allocation is
+                        dedicated to providing liquidity on both decentralized (DEX) and centralized exchanges (CEX),
+                        ensuring smooth trading experiences and reducing price volatility.</dd>
+
+                    <dt>Treasury and Development (10%)</dt>
+                    <dd>These funds will be used to support the long-term development and sustainability of the project.
+                        This includes funding future upgrades, partnerships, marketing efforts, and operational expenses
+                        to drive innovation and adoption.</dd>
+
+                    <dt>Future Burn (10%)</dt>
+                    <dd>The tokens in this wallet are allocated for burns or, depending on market demand, may be
+                        transferred to a DEX/CEX liquidity wallet. Any decisions regarding these tokens will be
+                        discussed with the community before action is taken. Under no circumstances will this allocation
+                        be sold by the founders or any other team members—we will never ‘rug pull’ our community.</dd>
+                </dl>
+            </div>
+        </section>
+
+        <section class="socials">
             <a href="https://x.com/yeswecanbr" target="_blank" title="Follow us on X">
-                <img src="images/icons8-x.svg" alt="X (Twitter)" style="vertical-align: middle;">
+                <img src="images/icons8-x.svg" alt="X (Twitter)" style="vertical-align: middle;" />
                 Follow us on X
             </a>
-        </div>
+        </section>
 
-        <div class="footer">
-            © 2025 Bear Rich. All rights reserved.
-            <br />
-            Contact: <span style="color: #0b2628">bear.rich@yeswecanberich.meme</span>
-        </div>
-    </div>
+        <footer class="footer">
+            <p>© 2025 Bear Rich. All rights reserved.</p>
+            <p>Contact: <span style="color: #0b2628">bear.rich@yeswecanberich.meme</span></p>
+            <p>This memecoin was created and is maintained by <a href="https://github.com/julianofischer"
+                    target="_blank">J. Fischer</a> and <a href="https://github.com/jivagomr" target="_blank">J.
+                    Ribeiro</a></p>
+            <p>Disclaimer: This is a memecoin and not financial advice. Always do your own research before investing.
+            </p>
+            <p>Bear Rich is not responsible for any losses incurred from trading or investing in this token.</p>
+        </footer>
+    </main>
 
     <script>
         const data = {
@@ -137,7 +240,7 @@
                 'Future Burn'
             ],
             datasets: [{
-                data: [10, 20, 50, 10, 10], // Corresponding percentages
+                data: [10, 20, 50, 10, 10],
                 backgroundColor: [
                     '#8ac06a',
                     '#4d7735',
@@ -148,13 +251,13 @@
             }]
         };
 
-        document.addEventListener('DOMContentLoaded', (event) => {
+        document.addEventListener('DOMContentLoaded', () => {
             const ctx = document.getElementById('tokenomic-chart').getContext('2d');
-            const myPieChart = new Chart(ctx, {
+            new Chart(ctx, {
                 type: 'pie',
                 data: data,
                 options: {
-                    responsive: false,
+                    responsive: true,
                     plugins: {
                         legend: {
                             position: 'top',
@@ -173,12 +276,10 @@
             navigator.clipboard.writeText(contractAddress).then(() => {
                 alert('Contract number copied to clipboard!');
             }).catch(err => {
-                console.error('Error trying to copy contract number: ', err);
+                console.error('Error copying: ', err);
             });
         }
-
     </script>
-
 </body>
 
 </html>
